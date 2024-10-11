@@ -5,7 +5,7 @@ use std::io::ErrorKind; //importing ErrorKind Structure
 
 fn main() { //declare main method
 
-    let new_file: Result<File, Error> = File::open(path: "randomFile.txt");
+    let new_file: Result<File, Error> = File::open(path: "randomFile.txt"); //declare variable new_file and let it hold a Result DT -> which holds a File DT -> attemps to open "randomFile.txt"
 
     let new_file: File = match new_file {
         Ok(file: File) => file,
@@ -19,8 +19,4 @@ fn main() { //declare main method
             }
         }
     }
-
-
-
-
 }
