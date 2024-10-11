@@ -1,22 +1,17 @@
-use std::fs::File; //importing file structure
-use std::io::ErrorKind; //importing ErrorKind Structure
+use std::fs::File;
 
 
 
 fn main() { //declare main method
 
-    let new_file: Result<File, Error> = File::open(path: "randomFile.txt"); //declare variable new_file and let it hold a Result DT -> which holds a File DT -> attemps to open "randomFile.txt"
+    let outcome = File::open("text.txt"); //attempt to open text File -> "text.txt"
 
-    let new_file: File = match new_file {
-        Ok(file: File) => file,
-        Err(error: Error) => match error.kind() {
-            ErrorKind::NotFound => match File::create(path: "randomFile.txt") {
-                Ok(file_created: File) = file_created,
-                Err(error: Error) => panic!("There was an error making file: {:?}", error),    
-            },
-            other_error: ErrorKind => {
-                panic!("There was an error opening file: {:?}", other_error)
-            }
-        }
-    }
+    let new_file = match outcome { //declare new variable and assigne value -> match case -> if OK-> open file, if Err -> assign error message to variable as its value
+        Ok(file) => file, //new_file = file -> if OK
+        Err(error) => panic!("error {:?}", error), //new_file = "error {error message}" -> if Err
+    };
+
+    println!("{:?}",new_file); //print to temrinal contents of new_file variable -> either text in .txt file or error message
+
+
 }
